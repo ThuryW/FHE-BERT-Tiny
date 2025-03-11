@@ -1,6 +1,5 @@
-project(FHE-BERT-Tiny)
-
 cmake_minimum_required(VERSION 3.5.1)
+project(FHE-BERT-Tiny)
 
 if(APPLE)
     set(CMAKE_C_COMPILER "/Library/Developer/CommandLineTools/usr/bin/gcc")

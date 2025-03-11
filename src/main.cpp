@@ -1,6 +1,7 @@
 #include <iostream>
 #include "FHEController.h"
 #include <chrono>
+#include <filesystem>
 
 #define GREEN_TEXT "\033[1;32m"
 #define RED_TEXT "\033[1;31m"
@@ -215,7 +216,7 @@ Ctxt encoder2(vector<Ctxt> inputs) {
 
     output = controller.matmulCR(output, dense_w, dense_b);
 
-    for (int i = 0; i < output.size(); i++) {
+    for (int i = 0; i < (int)output.size(); i++) {
         output[i] = controller.add(output[i], inputs[i]);
     }
 
@@ -257,7 +258,7 @@ Ctxt encoder2(vector<Ctxt> inputs) {
 
     output = controller.generate_containers(output, nullptr);
 
-    for (int i = 0; i < output.size(); i++) {
+    for (int i = 0; i < (int)output.size(); i++) {
         output[i] = controller.eval_gelu_function(output[i], -1, 1, GELU_max_abs_value, 59);
         output[i] = controller.bootstrap(output[i]);
     }
@@ -354,7 +355,7 @@ vector<Ctxt> encoder1() {
 
     output = controller.matmulCR(output, dense_w, dense_b);
 
-    for (int i = 0; i < output.size(); i++) {
+    for (int i = 0; i < (int)output.size(); i++) {
         output[i] = controller.add(output[i], inputs[i]);
     }
 
@@ -395,7 +396,7 @@ vector<Ctxt> encoder1() {
 
     output = controller.generate_containers(output, nullptr);
 
-    for (int i = 0; i < output.size(); i++) {
+    for (int i = 0; i < (int)output.size(); i++) {
         output[i] = controller.eval_gelu_function(output[i], -1, 1, GELU_max_abs_value, 119);
         output[i] = controller.bootstrap(output[i]);
     }
